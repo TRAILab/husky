@@ -120,6 +120,44 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <gazebo reference="imu_link">
   </gazebo>
 
+  <!-- Target link is where the Apriltag is -->
+  <joint name="target_joint" type="fixed">
+    <origin xyz="0 0 0.255" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="target_link" />
+  </joint>
+  <link name="target_link">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.8 0.8 0.001" />
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <!--mesh filename="package://rotors_description/meshes/target.dae" scale="1 1 1" /-->
+        <mesh filename="$(find rotors_description)/meshes/target.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <xacro:include filename="$(find rotors_description)/urdf/component_snippets.xacro" />
+  <xacro:default_imu namespace="target" parent_link="target_link" />
+
+  <!-- <gazebo>
+    <plugin name="landing_target_plugin" filename="librotors_gazebo_landing_target_plugin.so">
+      <robotNamespace>husky</robotNamespace>
+      <linkName>husky/target_joint</linkName>
+    </plugin>
+  </gazebo> -->
+
+
+
   <!-- Husky wheel macros -->
   <xacro:husky_wheel wheel_prefix="front_left">
     <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
@@ -163,7 +201,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:kinect_camera prefix="camera" robot_namespace="$(arg robot_namespace)"/>
   </xacro:if>
-
+  
+  <rosparam command="load" file="$(find husky_description)/urdf/gazebo_ros_control.yaml" />
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>$(arg robot_namespace)</robotNamespace>
