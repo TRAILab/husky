@@ -147,8 +147,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       </geometry>
     </visual>
   </link>
-  <xacro:include filename="$(find rotors_description)/urdf/component_snippets.xacro" />
-  <xacro:default_imu namespace="target" parent_link="target_link" />
 
   <!-- <gazebo>
     <plugin name="landing_target_plugin" filename="librotors_gazebo_landing_target_plugin.so">
@@ -241,8 +239,5 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <drift>0.0001 0.0001 0.0001</drift>
     </plugin>
   </gazebo>
-
-  <!-- Optional custom includes. -->
-  <xacro:include filename="$(arg urdf_extras)" />
 
 </robot>
