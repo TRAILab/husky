@@ -36,7 +36,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:property name="husky_front_bumper_extend" value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
   <xacro:property name="husky_rear_bumper_extend" value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
 
-  <xacro:arg name="robot_namespace" default="/" />
+  <!-- <xacro:arg name="robot_namespace" default="/" /> -->
+  <xacro:arg name="robot_namespace" default="husky" />
   <xacro:arg name="urdf_extras" default="empty.urdf" />
 
   <!-- Included URDF/XACRO Files -->
@@ -152,7 +153,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <!-- <gazebo>
     <plugin name="landing_target_plugin" filename="librotors_gazebo_landing_target_plugin.so">
       <robotNamespace>husky</robotNamespace>
-      <linkName>husky/target_joint</linkName>
+      <linkName>base_link</linkName>
     </plugin>
   </gazebo> -->
 
