@@ -1,6 +1,6 @@
-odom_frame: odom
+odom_frame: world
 base_link_frame: base_link
-world_frame: odom
+world_frame: world
 
 two_d_mode: true
 
