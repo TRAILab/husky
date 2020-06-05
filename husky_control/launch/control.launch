@@ -20,6 +20,7 @@
   </include>
 
   <!-- Load robot description -->
+  <rosparam command="load" file="$(find husky_control)/config/gazebo_ros_control.yaml" />
   <include file="$(find husky_description)/launch/description.launch" >
     <arg name="laser_enabled" default="$(arg laser_enabled)"/>
     <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
