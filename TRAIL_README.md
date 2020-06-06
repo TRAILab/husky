@@ -23,9 +23,25 @@ sudo apt install ros-kinetic-husky-desktop ros-kinetic-husky-simulator
 
 5. Check out the `kinetic-devel` branch
 
-6. Build the package
+6. Build the package and source the catkin workspace
 ```
 catkin build
+source ~/catkin_ws/devel/setup.bash
 ```
 
-7. The Husky will be spawned when running the RotorS simulator located in our fork of the [RotorS repository](https://github.com/TRAILab/rotors_simulator)
+7. To verify if the installation was successful, test to see if the Husky moves
+```
+# In one terminal tab
+roslaunch husky_gazebo husky_empty_world.launch
+# In another terminal tab
+rostopic pub /husky_velocity_controller/cmd_vel geometry_msgs/Twist "linear:
+        x: 0.5
+        y: 0.0
+        z: 0.0
+angular:
+        x: 0.0
+        y: 0.0
+        z: 0.0" -r 10
+```
+
+8. The Husky will be spawned when running the RotorS simulator located in our fork of the [RotorS repository](https://github.com/TRAILab/rotors_simulator)
