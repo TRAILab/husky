@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky_extras" >
+  <!-- This file is a placeholder which is included by default from
+       husky.urdf.xacro. If a robot is being customized and requires
+       additional URDF, set the HUSKY_URDF_EXTRAS environment variable
+       to the full path of the file you would like included. -->
+
+  <!-- AprilTag -->
+  <xacro:macro name="apriltag" params="parent_link">
+
+    <joint name="target_joint" type="fixed">
+      <origin xyz="0 0 0.255" rpy="0 0 0" />
+      <parent link="${parent_link}" />
+      <child link="target_link" />
+    </joint>
+
+    <link name="target_link">
+      <inertial>
+        <origin xyz="0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.8 0.8 0.001" />
+        </geometry>
+      </collision>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="$(find husky_description)/meshes/target.dae" scale="1 1 1"/>
+        </geometry>
+      </visual>
+    </link>
+
+  </xacro:macro>
+
+</robot>
